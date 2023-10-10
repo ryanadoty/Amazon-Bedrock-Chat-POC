@@ -56,8 +56,8 @@ def prompt_finder(question):
         k=3
     )
 
-    example_prompt = PromptTemplate(input_variables=["input", "answer"], template="\n\nHuman: {"
-                                                                                  "input}\n\nAssistant: {answer}")
+    example_prompt = PromptTemplate(input_variables=["input", "answer"], template="\n\nHuman: {input} \n\nAssistant: "
+                                                                                  "{answer}")
     prompt = FewShotPromptTemplate(
         example_selector=example_selector,
         example_prompt=example_prompt,
