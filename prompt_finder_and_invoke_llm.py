@@ -15,7 +15,7 @@ from langchain.vectorstores import Chroma
 
 boto3.setup_default_session(profile_name='bedrock')
 config = botocore.config.Config(connect_timeout=120, read_timeout=120)
-bedrock = boto3.client('bedrock-runtime', 'us-east-1', endpoint_url='https://bedrock.us-east-1.amazonaws.com',
+bedrock = boto3.client('bedrock-runtime', 'us-east-1', endpoint_url='https://bedrock-runtime.us-east-1.amazonaws.com',
                        config=config)
 
 
@@ -28,7 +28,6 @@ def load_samples():
 
     with open("sample_prompts/generic_samples.yaml", "r") as stream:
         generic_samples = yaml.safe_load(stream)
-
     return generic_samples
 
 
@@ -68,7 +67,6 @@ def prompt_finder(question):
 
     question_with_prompt = prompt.format(input=question)
     print(question_with_prompt)
-    # open("chat_history.txt", "w").close()
     return llm_answer_generator(question_with_prompt)
 
 
@@ -81,6 +79,7 @@ def llm_answer_generator(question_with_prompt):
                        "stop_sequences": []
                        })
     modelId = 'anthropic.claude-v2'
+    # modelId = 'anthropic.claude-instant-v1'
     accept = 'application/json'
     contentType = 'application/json'
 

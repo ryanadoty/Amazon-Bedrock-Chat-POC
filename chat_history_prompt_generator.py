@@ -7,7 +7,6 @@ def chat_history(session_state):
     question_answer = dict()
 
     for message in session_state.get('messages'):
-        # print(message)
         if message.get('role') == 'user':
             question = message.get('content')
         if message.get('role') == 'assistant':
