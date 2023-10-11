@@ -22,17 +22,24 @@ bedrock = boto3.client('bedrock-runtime', 'us-east-1', endpoint_url='https://bed
 
 def load_samples():
     """
-    Load the sql examples for few-shot prompting examples
-    :return: The sql samples in from the moma_examples.yaml file
+    Load the generic examples for few-shot prompting.
+    :return: The generic samples from the generic_samples.yaml file
     """
+    # initializing the generic_samples variable, where we will store our samples once they are read in
     generic_samples = None
-
+    # opening and reading the sample prompts file
     with open("sample_prompts/generic_samples.yaml", "r") as stream:
+        # storing the sample files in the generic samples variable we initialized
         generic_samples = yaml.safe_load(stream)
+    # returning the string containing all the sample prompts
     return generic_samples
 
 
 def chat_history_loader():
+    """
+    This function reads the chat_history.txt file, and puts it into a string to later inject into our prompt.
+    :return: A string containing all the chat history question and answers in a prompt format.
+    """
     with open("chat_history.txt", "r") as file:
         chat_history = file.read()
         if chat_history == "":
