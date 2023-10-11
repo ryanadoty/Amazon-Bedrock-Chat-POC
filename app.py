@@ -2,6 +2,7 @@ import streamlit as st
 from prompt_finder_and_invoke_llm import prompt_finder
 from chat_history_prompt_generator import chat_history
 
+# Title displayed on the streamlit web app
 st.title(f""":rainbow[Bedrock Chat]""")
 
 # configuring values for session state
@@ -37,4 +38,6 @@ if question := st.chat_input("Ask me about anything...but actually...anything...
     # appending the results to the session state
     st.session_state.messages.append({"role": "assistant",
                                       "content": answer})
+    # invoking that chat_history function in the chat_history_prompt_generator.py file to format past questions and
+    # answers and dynamically add them to future prompt
     chat_history(st.session_state)

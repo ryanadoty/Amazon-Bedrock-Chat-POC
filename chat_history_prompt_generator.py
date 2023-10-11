@@ -25,16 +25,12 @@ def chat_history(session_state):
 
     final_prompt = ""
     for question_answer_pair in question_history:
-        # print(question_answer_pair)
         final_prompt += f"""
         
         Question: {question_answer_pair.get('question')}
         
         Answer: {question_answer_pair.get('answer')}"""
-        # print("-------------------------------------------")
-        # print(final_prompt)
-        print("-------------------------------------------")
-    # print(final_prompt)
+
     with open('chat_history.txt', 'w') as history:
         history.write(final_prompt)
     return final_prompt
